@@ -48,6 +48,6 @@
                 <x-button class="bg-blue-400 hover:bg-blue-500" wire:click="delete">Continue</x-button>
             </x-slot>
         </x-confirmation-modal>
-            @endif
+          @endif
 </div>
 
