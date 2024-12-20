@@ -27,3 +27,10 @@ We are creating this modal .. next episode we are gonna see how to reuse it dyna
 cut this entire thing .. and paste it in to new component confirmation-modal.blade.php 
 
 <x-confirmation-blade>
+
+ipo namaku yethavathu html tag ah alphine js tag ah mathanum naa.. x-data nu kudukanum..
+
+ # Sharing State Between Livewire And Alpine: @entangle
+
+Livewire has an incredibly powerful feature called "entangle" that allows you to "entangle" a Livewire and Alpine property together.
+With entanglement, when one value changes, the other will also be changed.
