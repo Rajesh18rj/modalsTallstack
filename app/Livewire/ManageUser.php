@@ -3,33 +3,62 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use App\Models\Work;
 use Livewire\Component;
 
 class ManageUser extends Component
 {
-    public $showDeleteUserModal = false;
+    public $showDeleteWorkModal = false;
 
-    public User $currentUser;
+    public $vid;
+    public $name;
+    public $email;
+    public $phone;
+    public $job_postion;
+
+    public bool $showEditWorkModal = false;
+
+    public Work $currentWork;
 
     public function mount(){
-        $this->currentUser = new User();
+        $this->currentWork = new Work();
     }
 
-    public function confirmDelete(User $user){
+    public function edit($id): void{
+        $this->getObj($id);
+        $this->showEditWorkModal = true;
+    }
 
-        $this->currentUser = $user;
+    public function getObj($id)
+    {
+        if ($id) {
+            $obj = Work::find($id);
+            $this->vid  = $obj->id;
+            $this->name = $obj->name;
+            $this->email = $obj->email;
+            $this->phone = $obj->phone;
+            $this->job_postion = $obj->job_postion;
+            $this->showEditWorkModal = true;
+            return $obj;
+        }
+        return null;
+    }
 
-        $this->showDeleteUserModal = true;
+    public function confirmDelete(Work $work){
+
+        $this->currentWork = $work;
+
+        $this->showDeleteWorkModal = true;
 
     }
     public function delete(){
-        $this->currentUser->delete();
-        $this->showDeleteUserModal = false;
+        $this->currentWork->delete();
+        $this->showDeleteWorkModal = false;
     }
 
     public function render()
     {
         return view('livewire.manage-user')
-            ->with('users',User::all());
+            ->with('works',Work::all());
     }
 }
